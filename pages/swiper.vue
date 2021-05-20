@@ -116,8 +116,11 @@ slider.addEventListener('mousemove', (e) => {
 
 <style>
 
-@import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css';
+/* @import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css'; */
 
+.container *{
+    box-sizing: border-box;
+}
 .__container {
 
   margin: 0 auto;
@@ -128,6 +131,36 @@ slider.addEventListener('mousemove', (e) => {
   text-align: center;
 
 }
+
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+}
+
+
+
 
 .swiper-slide img{
     display: block;
