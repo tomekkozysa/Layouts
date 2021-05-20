@@ -1,20 +1,8 @@
 <template>
   <div class="container">
-
-      <swiper class="swiper">
-    <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
-      </swiper>
-  
-      <!-- <div v-swiper:mySwiper="swiperOption">
-        <div class="swiper-wrapper">
-        <div class="swiper-slide" :key="banner" v-for="banner in banners">
-            <div class="swiper-slide-wrap"><img :src="banner"></div>
-        </div>
-        </div>
-        <div class="swiper-pagination"></div>
-        </div> -->
-
-
+      <swiper class="swiper" :options="swiperOptions">
+            <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
+      </swiper>     
   </div>
 </template>
 
@@ -66,13 +54,28 @@ export default {
             
             
             ],
-            swiperOption: {
-            pagination: {
-                el: '.swiper-pagination'
-            },
-            // ...
+            swiperOptions: {
+                loadPrevNext:true,
+                        //    crossFade: true,
+                        
+                loop: true,
+                slidesPerView: 'auto',
+                freeMode: false,
+                freeModeSticky: true,
+                centeredSlides: true,
+                spaceBetween: 30,
+                grabCursor: true,           
+                // mousewheel: true,
+                // resistanceRatio:0,
+                cssMode:true,
+                keyboard: {
+    enabled: true,
+    onlyInViewport: false,
+  },
             }
         }
+        
+           
     },
     methods:{
 
@@ -80,153 +83,14 @@ export default {
     mounted(){}
 
         
-        /*
-    
-    const slider = document.querySelector('.items');
-let isDown = false;
-let startX;
-let scrollLeft;
-
-slider.addEventListener('mousedown', (e) => {
-  isDown = true;
-  slider.classList.add('active');
-  startX = e.pageX - slider.offsetLeft;
-  scrollLeft = slider.scrollLeft;
-});
-slider.addEventListener('mouseleave', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
-slider.addEventListener('mouseup', () => {
-  isDown = false;
-  slider.classList.remove('active');
-});
-slider.addEventListener('mousemove', (e) => {
-  if(!isDown) return;
-  e.preventDefault();
-  const x = e.pageX - slider.offsetLeft;
-  const walk = (x - startX) * 3; //scroll-fast
-  slider.scrollLeft = scrollLeft - walk;
-  console.log(walk);
-});
-    
-    */
 }
 </script>
 
 <style>
 
-/* @import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css'; */
-
-.container *{
-    box-sizing: border-box;
-}
-.__container {
-
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-}
-
-.swiper-container {
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
-    z-index: 1;
-}
-.swiper-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    transition-property: transform;
-    box-sizing: content-box;
-}
-
-.swiper-slide {
-    flex-shrink: 0;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition-property: transform;
-}
+@import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css';
 
 
-
-
-.swiper-slide img{
-    display: block;
-    max-width:100%;
-    width:auto;
-    max-height:100%;
-
-    /* object-fit: contain; */
-}
-.swiper{
-    margin-top:10vh;
-}
-.swiper-slide{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* border: 2px solid yellow; */
-    box-sizing: border-box;
-    height:80vh;
-
-}
-/* .swiper-slide-wrap{
-    display: flex;
-    width:100vw;
-    height:80vh;
-    align-items: center;
-    justify-content: center;
-    border:1px solid red
-} */
-
-
-.slider img{
-    width:100%;
-    height:auto;
-   opacity: .41;
-   display: block;
-    object-fit:contain;
-}
-.slider *{
-    box-sizing: border-box;
-}
-.slider{
-    display: flex;
-    flex-direction: row;       
-    flex-wrap:nowrap;
-   
-    scroll-snap-type: x mandatory;
-    overflow-x:auto;
-}
-.slide{ 
-    width: 100vw;
-    height: 90vh;
-    flex:1 0 100vh;
-    /* padding:1vw; */
-    /* margin:0 4vw; */
-    scroll-snap-align: start;
-    border-right:1px solid red;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.slide-content{
-    background: pink;
-    width:100px;
-    height:60vh;
-}
 body {
   font-family:
     'Quicksand',
@@ -245,4 +109,98 @@ body {
   letter-spacing: 1px;
 }
 
+/* 
+
+.container *{
+    box-sizing: border-box;
+}
+
+
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+    will-change: transform;
+    
+}
+
+
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    width:auto;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+     will-change: transform;
+    padding:20px;
+}
+
+
+ */
+
+
+.swiper-wrapper {
+    transition-timing-function:cubic-bezier(0, 0, 0, 1);
+    will-change: transform;
+    
+}
+.swiper{
+    margin-top:5vh;
+    user-select: none;
+}
+
+
+.swiper-slide{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    box-sizing: border-box;
+    height:90vh;
+    
+    -webkit-transform: translate3d(0, 0, 0);
+    
+
+
+}
+
+
+.swiper-slide img{
+    display: block;
+    max-width:90%;
+    width:auto;
+    max-height:100%;
+}
+/* 
+.swiper-slide{
+    transition:transform .25s ease-out
+}
+
+.swiper-slide-duplicate-active,
+.swiper-slide-active{
+    transform:translateX(0)
+}
+
+.swiper-slide-next{
+    transform:translateX(25%)
+}
+.swiper-slide-prev{
+    transform:translateX(-25%)
+} */
 </style>

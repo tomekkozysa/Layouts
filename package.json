@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "mobile": "nuxt --hostname '192.168.1.140' --port 8000"
   },
   "dependencies": {
     "core-js": "^3.9.1",
