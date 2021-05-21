@@ -102,7 +102,7 @@ export default {
 
 <style>
 
-@import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css';
+/* @import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css'; */
 
 
 
