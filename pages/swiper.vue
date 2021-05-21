@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-        <div class="swiper-prev">
+        <div :class="[hasMouse ? 'has_mouse' : '', 'swiper-prev']">
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z"/></svg>
         </div>
-        <div class="swiper-next">
+        <div :class="[hasMouse ? 'has_mouse' : '', 'swiper-next']">
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
         </div>
       <swiper class="swiper" :options="swiperOptions">
@@ -14,22 +14,7 @@
 
 <script>
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
-// import 'swiper/css/swiper.css'
 
-// Elm short thick bit.jpg
-// Oak trestle console 4.jpg
-
-
-// PHOTO-2021-02-13-12-14-07_3.jpg
-// PHOTO-2021-02-13-12-14-07_4.jpg
-// PHOTO-2021-02-13-12-14-07_5.jpg
-// PHOTO-2021-02-13-12-14-07_6.jpg
-// PHOTO-2021-02-13-12-14-07_7.jpg
-// PHOTO-2021-02-13-12-14-07_8.jpg
-// PHOTO-2021-02-13-12-14-07_9.jpg
-// PHOTO-2021-02-13-12-14-07.jpg
-// PHOTO-2021-02-13-13-17-07_7.jpg
-// PHOTO-2021-02-13-13-17-07_8.jpg
 export default {
     components: {
     Swiper,
@@ -40,13 +25,14 @@ export default {
   },
     data(){
         return{
+            hasMouse:false,
             banners: [ 
-                '/img/rmc_002.jpg', 
                 '/img/rmc_003.jpg', 
                 '/img/rmc_004.jpg', 
                 '/img/rmc_005.jpg', 
                 '/img/rmc_006.jpg', 
                 '/img/rmc_007.jpg', 
+                '/img/rmc_002.jpg', 
                 '/img/rmc_008.jpg', 
                 '/img/rmc_009.jpg', 
                 '/img/rmc_0010.jpg', 
@@ -56,24 +42,22 @@ export default {
                 '/img/rmc_0014.jpg', 
                 '/img/rmc_0015.jpg', 
                 '/img/rmc_0016.jpg', 
-                '/img/rmc_0017.jpg', 
-            
-            
+                '/img/rmc_0017.jpg',
+                '/img/rmc_0018.jpg',
+                '/img/rmc_0019.jpg',
+                '/img/rmc_0020.jpg',
+                '/img/rmc_0021.jpg',
             ],
             swiperOptions: {
-                loadPrevNext:true,
-                        //    crossFade: true,
-                        
-                loop: true,
-                // slidesPerView: 'auto',
-                freeMode: true,
+                loadPrevNext:true,                      
+                loop: false,
+                freeMode: false,
                 freeModeSticky: true,
                 centeredSlides: true,
                 spaceBetween: 30,
                 grabCursor: true,           
                 mousewheel: true,
-                // resistanceRatio:0,
-                speed:1000,
+                speed:200,
                 cssMode:true,
                 keyboard: {
                     enabled: true,
@@ -88,10 +72,25 @@ export default {
         
            
     },
-    methods:{
-
+    computed: {
+    classObject: function () {
+        return {
+        show_nav: this.hasMouse,
+    
+        }
+    }
     },
-    mounted(){}
+
+    methods:{
+        mouse:function(e){
+            this.hasMouse = true;
+            console.log('mouse!!!')
+            window.removeEventListener('mousemove',this.mouse);
+        }
+    },
+    mounted(){
+        window.addEventListener('mousemove',this.mouse)
+    }
 
         
 }
@@ -175,9 +174,10 @@ body {
     width:100vw;
     justify-content: space-between;
 }
+
 .swiper-next,
 .swiper-prev{
-    width:50%;
+    width:40%;
     height:90vh;
     /* background: pink; */
     cursor: pointer;
@@ -188,16 +188,16 @@ body {
     display: flex;
     align-items: center;
     padding:40px;
+    pointer-events: none;
+    opacity:0;
 }
 .swiper-next{
     right:0;
     left:auto;    
     justify-content: flex-end;
 }
-.swiper-prev{
-    
+.swiper-prev{    
     justify-content: flex-start;
-
 }
 
 .swiper-next:focus,
@@ -222,6 +222,13 @@ body {
 }
 .swiper-prev:hover svg{
     transform: translateX(0px);
+    opacity:1;
+}
+
+
+.swiper-next.has_mouse,
+.swiper-prev.has_mouse{
+    pointer-events:initial;
     opacity:1;
 }
 
@@ -313,7 +320,7 @@ body {
     display: block;
     max-width:90%;
     width:auto;
-    max-height:100%;
+    max-height:80%;
 }
 /* 
 .swiper-slide{
