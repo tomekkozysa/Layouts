@@ -1,13 +1,10 @@
 <template>
   <div class="container">
-    <!-- <div class="swiper-nav">    </div> -->
         <div class="swiper-prev">
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z"/></svg>
         </div>
         <div class="swiper-next">
-
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
-
         </div>
       <swiper class="swiper" :options="swiperOptions">
             <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
@@ -102,9 +99,6 @@ export default {
 
 <style>
 
-/* @import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css'; */
-
-
 
 body {
   font-family:
@@ -183,7 +177,7 @@ body {
 }
 .swiper-next,
 .swiper-prev{
-    width:10%;
+    width:50%;
     height:90vh;
     /* background: pink; */
     cursor: pointer;
@@ -193,11 +187,22 @@ body {
     z-index:1000;
     display: flex;
     align-items: center;
-    justify-content: center;
+    padding:40px;
 }
 .swiper-next{
     right:0;
-    left:auto;
+    left:auto;    
+    justify-content: flex-end;
+}
+.swiper-prev{
+    
+    justify-content: flex-start;
+
+}
+
+.swiper-next:focus,
+.swiper-prev:focus{
+    outline:0
 }
 
 .swiper-next svg{
@@ -209,6 +214,7 @@ body {
     transform: translateX(0px);
     opacity:1;
 }
+
 .swiper-prev svg{
     transform: translateX(20px);
     opacity:0;    
@@ -218,6 +224,9 @@ body {
     transform: translateX(0px);
     opacity:1;
 }
+
+
+
 
 .swiper-container {
   margin-left: auto;
@@ -229,6 +238,7 @@ body {
   /* Fix of Webkit flickering */
   z-index: 1;
 }
+
 .swiper-container-vertical > .swiper-wrapper {
   flex-direction: column;
 }
