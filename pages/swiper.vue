@@ -1,5 +1,14 @@
 <template>
   <div class="container">
+    <!-- <div class="swiper-nav">    </div> -->
+        <div class="swiper-prev">
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z"/></svg>
+        </div>
+        <div class="swiper-next">
+
+            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
+
+        </div>
       <swiper class="swiper" :options="swiperOptions">
             <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
       </swiper>     
@@ -59,19 +68,24 @@ export default {
                         //    crossFade: true,
                         
                 loop: true,
-                slidesPerView: 'auto',
-                freeMode: false,
+                // slidesPerView: 'auto',
+                freeMode: true,
                 freeModeSticky: true,
                 centeredSlides: true,
                 spaceBetween: 30,
                 grabCursor: true,           
-                // mousewheel: true,
+                mousewheel: true,
                 // resistanceRatio:0,
+                speed:1000,
                 cssMode:true,
                 keyboard: {
-    enabled: true,
-    onlyInViewport: false,
-  },
+                    enabled: true,
+                    onlyInViewport: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-next',
+                    prevEl: '.swiper-prev',
+                },
             }
         }
         
@@ -89,6 +103,7 @@ export default {
 <style>
 
 @import 'https://cdn.jsdelivr.net/npm/swiper@5.3.6/css/swiper.min.css';
+
 
 
 body {
@@ -153,10 +168,112 @@ body {
 
 
  */
+.container{
+    position:relative;
+}
+.swiper-nav{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1000;
+    display: flex;
+    height: 90vh;
+    width:100vw;
+    justify-content: space-between;
+}
+.swiper-next,
+.swiper-prev{
+    width:10%;
+    height:90vh;
+    /* background: pink; */
+    cursor: pointer;
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.swiper-next{
+    right:0;
+    left:auto;
+}
+
+.swiper-next svg{
+    transform: translateX(-20px);
+    opacity:0;
+    transition: transform .2s, opacity .1s;    
+}
+.swiper-next:hover svg{
+    transform: translateX(0px);
+    opacity:1;
+}
+.swiper-prev svg{
+    transform: translateX(20px);
+    opacity:0;    
+    transition: transform .2s, opacity .1s;    
+}
+.swiper-prev:hover svg{
+    transform: translateX(0px);
+    opacity:1;
+}
+
+.swiper-container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  /* Fix of Webkit flickering */
+  z-index: 1;
+}
+.swiper-container-vertical > .swiper-wrapper {
+  flex-direction: column;
+}
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+.swiper-container-android .swiper-slide,
+.swiper-wrapper {
+  transform: translate3d(0px, 0, 0);
+}
+.swiper-container-multirow > .swiper-wrapper {
+  flex-wrap: wrap;
+}
+.swiper-container-multirow-column > .swiper-wrapper {
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+.swiper-container-free-mode > .swiper-wrapper {
+  transition-timing-function: ease-out;
+  margin: 0 auto;
+}
+.swiper-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+}
+.swiper-slide-invisible-blank {
+  visibility: hidden;
+}
+
+
+
 
 
 .swiper-wrapper {
-    transition-timing-function:cubic-bezier(0, 0, 0, 1);
+    transition-timing-function:ease-out;
+    transition-duration: 1000ms;
     will-change: transform;
     
 }
@@ -175,6 +292,7 @@ body {
     height:90vh;
     
     -webkit-transform: translate3d(0, 0, 0);
+
     
 
 
