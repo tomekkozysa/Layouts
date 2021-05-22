@@ -1,14 +1,19 @@
 <template>
-  <div class="container">
+  <div class="container" :class="[!hasMouse ? 'has_mouse' : '']">
         <div :class="[hasMouse ? 'has_mouse' : '', 'swiper-prev']">
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z"/></svg>
         </div>
         <div :class="[hasMouse ? 'has_mouse' : '', 'swiper-next']">
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
         </div>
-      <swiper class="swiper" :options="swiperOptions">
+        <swiper v-if="mouseTested && hasMouse" class="swiper" :options="swiperMouseOptions" >
             <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
-      </swiper>     
+        </swiper>
+
+        <swiper v-if="mouseTested && !hasMouse" class="swiper" :options="swiperTouchOptions" >
+            <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
+        </swiper>    
+      <div class="swiper-pagination" ></div>
   </div>
 </template>
 
@@ -26,6 +31,7 @@ export default {
     data(){
         return{
             hasMouse:false,
+            mouseTested:false,
             banners: [ 
                 '/img/rmc_003.jpg', 
                 '/img/rmc_004.jpg', 
@@ -48,17 +54,17 @@ export default {
                 '/img/rmc_0020.jpg',
                 '/img/rmc_0021.jpg',
             ],
-            swiperOptions: {
+            swiperMouseOptions: {
                 loadPrevNext:true,                      
-                loop: false,
+                loop: true,
                 freeMode: false,
                 freeModeSticky: true,
                 centeredSlides: true,
                 spaceBetween: 30,
                 grabCursor: true,           
                 mousewheel: true,
-                speed:200,
-                cssMode:true,
+                speed:750,
+                cssMode:false,
                 keyboard: {
                     enabled: true,
                     onlyInViewport: false,
@@ -67,6 +73,24 @@ export default {
                     nextEl: '.swiper-next',
                     prevEl: '.swiper-prev',
                 },
+                // pagination: {
+                //     el: '.swiper-pagination',
+                //     type: 'bullets',
+                //     dynamicBullets:true,
+                // }
+            },
+            swiperTouchOptions: {
+                loadPrevNext:true,                      
+                loop: true,
+                freeMode: true,
+                freeModeSticky: true,
+                centeredSlides: true,
+                spaceBetween: 30,
+                grabCursor: true,           
+                mousewheel: true,
+                speed:200,
+                cssMode:true,
+                
             }
         }
         
@@ -84,12 +108,24 @@ export default {
     methods:{
         mouse:function(e){
             this.hasMouse = true;
-            console.log('mouse!!!')
+            
             window.removeEventListener('mousemove',this.mouse);
         }
     },
     mounted(){
-        window.addEventListener('mousemove',this.mouse)
+
+        if (matchMedia('(hover:hover)').matches) {
+            this.hasMouse = true;
+        }
+        else{
+        this.hasMouse = false;
+        }
+        this.mouseTested = true;
+
+        console.log(this.hasMouse,this.mouseTested)
+        //window.addEventListener('mousemove',this.mouse);
+
+
     }
 
         
@@ -164,6 +200,9 @@ body {
 .container{
     position:relative;
 }
+.container.has_mouse{
+
+}
 .swiper-nav{
     position:absolute;
     top:0;
@@ -177,7 +216,7 @@ body {
 
 .swiper-next,
 .swiper-prev{
-    width:40%;
+    width:20%;
     height:90vh;
     /* background: pink; */
     cursor: pointer;
@@ -321,6 +360,7 @@ body {
     max-width:90%;
     width:auto;
     max-height:80%;
+    height:80%;
 }
 /* 
 .swiper-slide{
