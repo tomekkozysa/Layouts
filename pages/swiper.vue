@@ -360,7 +360,7 @@ body {
     max-width:90%;
     width:auto;
     max-height:80%;
-    height:80%;
+    /* height:80%; */
 }
 /* 
 .swiper-slide{
