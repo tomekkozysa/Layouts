@@ -1,15 +1,13 @@
 <template>
-  <div class="container" :class="[!hasMouse ? 'has_mouse' : '']">
-  
-         <div class="grid">
-                <div class="cell" :key="banner" v-for="(banner,index) in collection" @click="toggle($event,index)" >
-                    <img :src="banner"  />
-                    <span class="no">{{index}}</span>
-                </div>
+    
+        <div class="grid">
+            <img :src="banner"  key="banner" v-for="(banner,index) in collection" @click="toggle($event,index)" />
+            <!-- <div class="cell" : >
+                
+                
+            </div> -->
         </div>
-
-      
-  </div>
+  
 </template>
 
 <script>
@@ -82,47 +80,55 @@ export default {
 
 <style scoped>
 
-
+/* 
 .container{
     position:relative;
 }
 .container.has_mouse{
 
-}
+} */
 .grid{
+    --column-count:4;
+    --cell-w:250px;
+   
+    display: grid;
     /* transform:translateY(0vh); */
-    display:flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    padding: 0;
-    max-width: 1200px;
+    grid-template-columns: repeat(var(--column-count), var(--cell-w));
+    /* grid-template-rows: repeat(4, var(--cell-w)); */
+    grid-auto-rows:var(--cell-w);
     margin: 0 auto;
-    /* margin-top:80vh; */
+    margin-top:20vh;
+    width: calc( var(--column-count) * var(--cell-w));
 
     /* transition: transform .2s; */
 }
-
+.grid,
+.grid * {
+    box-sizing: border-box;
+}
 .container:hover .grid{
     transform:translateY(0);
 }
 .cell{
-   flex: 0 0 auto;
-    /*flex-grow: 1;*/
-    position:relative;
+   /* width: var(--cell-w); */
+   /* height: ; */
 }
 img{
     /* flex:1 1 400px; */
-    width: 300px;
-    height: 300px;
+    width: var(--cell-w);
+    height: var(--cell-w);
+    width: 100%; height:100%;
     display:block;
-    flex: 0 0 auto;
+    /* flex: 0 0 auto; */
     object-fit: cover;
     padding:20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    
+    
 }
 img:hover{
-    
+     
 }
 .no{
     position:absolute;
