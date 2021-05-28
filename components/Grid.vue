@@ -65,61 +65,53 @@ export default {
 </script>
 <style scoped>
 
-/* 
-.container{
-    position:relative;
-}
-.container.has_mouse{
-
-} */
 .grid{
-    --column-count:4;
+    --column-count:3;
     --cell-w:250px;
-   
+    --img-p:20px;
     display: grid;
-    /* transform:translateY(0vh); */
     grid-template-columns: repeat(var(--column-count), var(--cell-w));
-    /* grid-template-rows: repeat(4, var(--cell-w)); */
     grid-auto-rows:var(--cell-w);
     margin: 0 auto;
     margin-top:20vh;
     width: calc( var(--column-count) * var(--cell-w));
-
-    /* transition: transform .2s; */
 }
+
+
+@media (min-width: 1024px) { 
+    .grid{--column-count:4;}
+}
+@media (min-width: 1280px) { 
+    .grid{--column-count:5;}
+}
+
+@media (max-width: 768px) { 
+    .grid{--column-count:2;}
+}
+@media (max-width: 640px) { 
+    .grid{--column-count:2;}
+}
+@media (max-width: 480px) { 
+    .grid{
+        --column-count:2;
+        --cell-w:180px;
+         --img-p:10px;
+     }
+   
+}
+
 .grid,
 .grid * {
     box-sizing: border-box;
 }
-.container:hover .grid{
-    transform:translateY(0);
-}
-.cell{
-   /* width: var(--cell-w); */
-   /* height: ; */
-}
 img{
-    /* flex:1 1 400px; */
     width: var(--cell-w);
     height: var(--cell-w);
     width: 100%; height:100%;
     display:block;
-    /* flex: 0 0 auto; */
     object-fit: cover;
-    padding:20px;
+    padding:var(--img-p);
     box-sizing: border-box;
     cursor: pointer;
-    
-    
-}
-img:hover{
-     
-}
-.no{
-    position:absolute;
-    top:20px;left:20px;
-    background: wheat;
-    display: inline-block;
-    padding:10px;
 }
 </style>

@@ -71,9 +71,12 @@ transition: background .5s ease-in-out
     top:0;
     right: var(--nav-shift);
     z-index:1000;
-   text-align: center;
-   padding-top:120px;
-   transition:transform .13s ease-in-out;
+    text-align: center;
+       transition:transform .13s ease-in-out;
+   display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
 }
 .navigation.is_open{
@@ -88,5 +91,8 @@ p{
     text-decoration: none;
     font-weight: 400;
     color:#444;
+}
+.navigation-link:hover{
+    text-decoration: underline;
 }
 </style>
