@@ -1,45 +1,45 @@
 <template>
-  <div class="container" :class="[!hasMouse ? 'has_mouse' : '']">
-      <span class="no" @click="toggleGrid">toggle Grid</span>
-
-        <!-- <div :class="[hasMouse ? 'has_mouse' : '', 'swiper-prev']">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z"/></svg>
+    <div>
+        
+        <Navigation :open="is_nav_open" />
+        <div class="container" :class="[!hasMouse ? 'has_mouse' : '']">
+            <Header :onGridToggle="onGridToggle" :onNavToggle="onNavToggle" />
+            <div>
+                
+                <Swip :collection="bannershd" :goto="displaySlide" />
+                
+            </div>
+            <section :class="gridCSS">
+                    <Grid  :collection="bannershd" :onGridSelected="onGridSelected"/>
+                </section>
         </div>
-        <div :class="[hasMouse ? 'has_mouse' : '', 'swiper-next']">
-            <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
-        </div> -->
-        <swiper 
-        @inInit="onMouseSwiper"
-        v-if="mouseTested && hasMouse" class="swiper" :options="swiperMouseOptions" >
-            <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
-        </swiper>
-
-        <swiper v-if="mouseTested && !hasMouse" class="swiper" :options="swiperTouchOptions" >
-            <swiper-slide :key="banner" v-for="banner in banners"><img :src="banner"></swiper-slide>
-        </swiper>    
-      
-      <section :class="gridCSS">
-          <Grid  :collection="banners" :onGridSelected="onGridSelected"/>
-        </section>
     </div>
 </template>
 
 <script>
-import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper'
+
 import  Grid from '~/components/Grid.vue'
+import  Swip from '~/components/Swip.vue'
+import  Header from '~/components/Header.vue'
+import  Navigation from '~/components/Navigation.vue'
+
+
 export default {
     components: {
-    Swiper,
-    SwiperSlide,
-    Grid
+    Swip,
+    Grid,
+    Header,
+    Navigation
   },
-  
     data(){
         return{
             hasMouse:false,
             mouseTested:false,
             runswiper:null,
             showGrid:false,
+            swiper:null,
+            is_nav_open:false,
+            displaySlide:1,
             banners: [ 
                 '/img/rmc_003.jpg', 
                 '/img/rmc_004.jpg', 
@@ -73,6 +73,61 @@ export default {
                 '/img/rmc_0031.jpg',
                 '/img/rmc_0032.jpg',
             ],
+            bannershd: [ 
+                '/imghd/rmc_0022.jpg',
+                 '/imghd/rmc_0030.jpg',
+                // '/imghd/rmc_001.jpg', 
+               
+                '/imghd/rmc_003.jpg', 
+                '/imghd/rmc_004.jpg', 
+                '/imghd/rmc_005.jpg', 
+                '/imghd/rmc_006.jpg', 
+                '/imghd/rmc_007.jpg', 
+                // '/imghd/rmc_002.jpg', 
+                '/imghd/rmc_008.jpg', 
+                // '/imghd/rmc_009.jpg', 
+                '/imghd/rmc_0010.jpg', 
+                '/imghd/rmc_0011.jpg', 
+                '/imghd/rmc_0012.jpg', 
+                '/imghd/rmc_0013.jpg', 
+                '/imghd/rmc_0014.jpg', 
+                '/imghd/rmc_0015.jpg', 
+                '/imghd/rmc_0016.jpg', 
+                '/imghd/rmc_0017.jpg',
+                '/imghd/rmc_0018.jpg',
+                // '/imghd/rmc_0019.jpg',
+                '/imghd/rmc_0020.jpg',
+                '/imghd/rmc_0021.jpg',
+                
+                '/imghd/rmc_0023.jpg',
+                '/imghd/rmc_0024.jpg',
+                '/imghd/rmc_0025.jpg',
+                '/imghd/rmc_0026.jpg',
+                '/imghd/rmc_0027.jpg',
+                '/imghd/rmc_0028.jpg',
+                '/imghd/rmc_0029.jpg',
+               
+                '/imghd/rmc_0031.jpg',
+                '/imghd/rmc_0032.jpg',
+                '/imghd/rmc_0033.jpg',
+                '/imghd/rmc_0034.jpg',
+                '/imghd/rmc_0035.jpg',
+                '/imghd/rmc_0036.jpg',
+                '/imghd/rmc_0037.jpg',
+                '/imghd/rmc_0038.jpg',
+                '/imghd/rmc_0039.jpg',
+                '/imghd/rmc_0040.jpg',
+                '/imghd/rmc_0041.jpg',
+                '/imghd/rmc_0042.jpg',
+                '/imghd/rmc_0043.jpg',
+                '/imghd/rmc_0044.jpg',
+                '/imghd/rmc_0045.jpg',
+                '/imghd/rmc_0046.jpg',
+                '/imghd/rmc_0047.jpg',
+                '/imghd/rmc_0048.jpg',
+                 '/imghd/rmc_002.jpg', 
+                
+            ],
             swiperMouseOptions: {
                 loadPrevNext:true,                      
                 loop: true,
@@ -83,6 +138,7 @@ export default {
                 grabCursor: true,           
                 mousewheel: true,
                 speed:750,
+                
                 cssMode:false,
                 keyboard: {
                     enabled: true,
@@ -106,8 +162,7 @@ export default {
                 centeredSlides: true,
                 spaceBetween: 30,
                 grabCursor: true,           
-                mousewheel: true,
-                speed:200,
+               
                 cssMode:true,
                 
             }
@@ -132,39 +187,44 @@ export default {
     },
 
     methods:{
-        mouse:function(e){
-            this.hasMouse = true;
-            window.removeEventListener('mousemove',this.mouse);
-        },
+        // mouse:function(e){
+        //     this.hasMouse = true;
+        //     window.removeEventListener('mousemove',this.mouse);
+        // },
         onGridSelected:function(index){
             this.displaySlide = index;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({top:0});
             this.showGrid=false;     
-            // console.log(this.$refs.swiperMouse)        
-            // this.$refs.swiperMouse.slideTo(index)
         },
-        toggleGrid:function(){
+        onGridToggle:function(){
             this.showGrid = !this.showGrid;
+            if(this.is_nav_open){
+                this.is_nav_open = false;
+            }
         },
-        onMouseSwiper:function(swp){
-            console.log('XXXX',swp);
-            this.runswiper = swp;
-            swp.slideTo(10);
-        }
+        onNavToggle:function(){
+            this.is_nav_open = !this.is_nav_open;
+            console.log(this.is_nav_open)
+        },
+        // onMouseSwiper:function(swp){
+        //     console.log('XXXX',swp);
+        //     this.runswiper = swp;
+        //     swp.slideTo(10);
+        // }
     },
     mounted(){
 
-        if (matchMedia('(hover:hover)').matches) {
-            this.hasMouse = true;
-        }
-        else{
-        this.hasMouse = false;
-        }
-        this.mouseTested = true;
+        // if (matchMedia('(hover:hover)').matches) {
+        //     this.hasMouse = true;
+        // }
+        // else{
+        //     this.hasMouse = false;
+        // }
+        //     this.mouseTested = true;
 
-        console.log(this.hasMouse,this.mouseTested)
-        //window.addEventListener('mousemove',this.mouse);
-
+        // console.log(this.hasMouse,this.mouseTested)
+        // console.log(this.customSwiperInstanceName);
 
     }
 
@@ -174,6 +234,9 @@ export default {
 
 <style>
 
+html{
+    height:100%;
+}
 
 body {
   font-family:
@@ -189,68 +252,34 @@ body {
   display: block;
   font-weight: 300;
   font-size: 16px;
-  color: #35495e;
-  letter-spacing: 1px;
+  /* color: #35495e; */
+  /* letter-spacing: 1px; */
+  height:100%;
 }
 
 .grid_default{
     background: white;
-}
-.is_visible{
+    /* max-height:0;*/
+    overflow: hidden;
     position: absolute;
     top:0;left:0;
-    width:100vw;
+    transform: translateY(100vh); 
+     width:100%;
     z-index:100;
-
-    /* transform: translateY(100vh); */
-}
-
-/* 
-
-.container *{
-    box-sizing: border-box;
-}
-
-
-.swiper-container {
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    overflow: hidden;
-    list-style: none;
-    padding: 0;
-    z-index: 1;
-}
-
-.swiper-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    display: flex;
-    transition-property: transform;
-    box-sizing: content-box;
-    will-change: transform;
+    /* max-height:0;/* */
+    transition:transform .3s;
+    }
+.is_visible{
     
+    
+   z-index:500;
+    /* max-height:20; */
+    transform: translateY(0vh);
 }
 
-
-
-.swiper-slide {
-    flex-shrink: 0;
-    width: 100%;
-    width:auto;
-    height: 100%;
-    position: relative;
-    transition-property: transform;
-     will-change: transform;
-    padding:20px;
-}
-
-
- */
 .container{
     position:relative;
+    /* overflow-x: hidden; */
 }
 .container.has_mouse{
 

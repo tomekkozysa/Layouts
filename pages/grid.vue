@@ -223,9 +223,9 @@ img:hover{
 }
 .no{
     position:absolute;
-    top:20px;left:20px;
+    top:40px;left:40px;
     background: wheat;
     display: inline-block;
-    padding:10px;
+    padding:20;
 }
 </style>
