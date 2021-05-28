@@ -1,18 +1,9 @@
 <template>
-    
-        <div class="grid">
-            <img :src="banner"  key="banner" v-for="(banner,index) in collection" @click="toggle($event,index)" />
-            <!-- <div class="cell" : >
-                
-                
-            </div> -->
-        </div>
-  
+    <div class="grid">
+        <img :src="banner"  key="banner" v-for="(banner,index) in collection" @click="toggle($event,index)" />
+    </div>
 </template>
-
 <script>
-
-
 export default {
     components: {},
     directives: {},
@@ -57,11 +48,8 @@ export default {
                 '/img/rmc_0030.jpg',
                 '/img/rmc_0031.jpg',
                 '/img/rmc_0032.jpg',
-            ],
-            
-        }
-        
-           
+            ],            
+        }  
     },
     computed: {
     },
@@ -72,12 +60,9 @@ export default {
             console.log(index);
             this.onGridSelected(index)
         }
-
     }
-        
 }
 </script>
-
 <style scoped>
 
 /* 
