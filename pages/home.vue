@@ -199,7 +199,7 @@ export default {
         },
         onGridToggle:function(){
             this.showGrid = !this.showGrid;
-            if(this.showGrid){
+            if(this.is_nav_open){
                 this.is_nav_open = false;
             }
         },
