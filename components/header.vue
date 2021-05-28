@@ -1,6 +1,5 @@
 <template>
   <div class="header">
-        
          <img class="logo" src="/rmcnm.png" />
          <div class="header-nav">
              <img class="header-nav-icon" src="iconmonstr-view-5.svg" alt="" @click="onGridToggle">
