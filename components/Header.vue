@@ -2,8 +2,8 @@
   <div class="header">
          <img class="logo" src="/rmcnm.png" />
          <div class="header-nav">
-             <img class="header-nav-icon" src="iconmonstr-view-5.svg" alt="" @click="onGridToggle">
-             <img class="header-nav-icon" src="iconmonstr-email-14.svg" alt="" @click="onNavToggle"> 
+             <img class="header-nav-icon" src="/iconmonstr-view-5.svg" alt="" @click="onGridToggle">
+             <img class="header-nav-icon" src="/iconmonstr-email-14.svg" alt="" @click="onNavToggle"> 
               
          </div>
       
