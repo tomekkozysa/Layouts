@@ -61,23 +61,15 @@ export default {
                     nextEl: '.swiper-next',
                     prevEl: '.swiper-prev',
                 },
-                coverflowEffect: {
-                    rotate: 30,
-                    slideShadows: false,
-                },
-                // pagination: {
-                //     el: '.swiper-pagination',
-                //     type: 'bullets',
-                //     dynamicBullets:true,
-                // }
+                
             },
             swiperTouchOptions: {
                 loadPrevNext:true,                      
                 loop: true,
                 loopedSlides:this.collection.length,
-                // freeMode: true,
-                // freeModeSticky: true,
-                // centeredSlides: true,
+                freeMode: true,
+                freeModeSticky: true,
+                centeredSlides: true,
                 spaceBetween: 30,
                 grabCursor: true,           
                 mousewheel: true,
@@ -98,7 +90,7 @@ export default {
         goto:function(n,o){
             console.log(n,o)
             this.slides.params.speed = 0;
-            this.slides.slideTo(n+1);
+            this.slides.slideTo(n);
             this.slides.params.speed = 300;
         }
     },
@@ -120,7 +112,7 @@ export default {
     let s = new Swiper('.swiper-container', options )
 
     this.slides = s;
-    this.slides.slideTo(this.goto);
+    // this.slides.slideTo(this.goto);
   }
 }
 </script>
