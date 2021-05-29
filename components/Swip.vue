@@ -44,7 +44,8 @@ export default {
             slides:null,
             swiperMouseOptions: {
                 loadPrevNext:true,                      
-                loop: true,
+                loop: false,
+                loopedSlides:45,
                 freeMode: false,
                 freeModeSticky: true,
                 centeredSlides: true,
@@ -66,7 +67,7 @@ export default {
             swiperTouchOptions: {
                 loadPrevNext:true,                      
                 loop: true,
-                loopedSlides:this.collection.length,
+                loopedSlides:45,
                 freeMode: true,
                 freeModeSticky: true,
                 centeredSlides: true,
@@ -88,10 +89,11 @@ export default {
     },
     watch:{
         goto:function(n,o){
-            console.log(n,o)
+            console.log(n,o, this.collection[n])
             this.slides.params.speed = 0;
+
             this.slides.slideTo(n);
-            this.slides.params.speed = 300;
+            this.slides.params.speed = 666;
         }
     },
   mounted() {

@@ -40,39 +40,7 @@ export default {
             swiper:null,
             is_nav_open:false,
             displaySlide:1,
-            banners: [ 
-                '/img/rmc_003.jpg', 
-                '/img/rmc_004.jpg', 
-                '/img/rmc_005.jpg', 
-                '/img/rmc_006.jpg', 
-                '/img/rmc_007.jpg', 
-                '/img/rmc_002.jpg', 
-                '/img/rmc_008.jpg', 
-                '/img/rmc_009.jpg', 
-                '/img/rmc_0010.jpg', 
-                '/img/rmc_0011.jpg', 
-                '/img/rmc_0012.jpg', 
-                '/img/rmc_0013.jpg', 
-                '/img/rmc_0014.jpg', 
-                '/img/rmc_0015.jpg', 
-                '/img/rmc_0016.jpg', 
-                '/img/rmc_0017.jpg',
-                '/img/rmc_0018.jpg',
-                '/img/rmc_0019.jpg',
-                '/img/rmc_0020.jpg',
-                '/img/rmc_0021.jpg',
-                '/img/rmc_0022.jpg',
-                '/img/rmc_0023.jpg',
-                '/img/rmc_0024.jpg',
-                '/img/rmc_0025.jpg',
-                '/img/rmc_0026.jpg',
-                '/img/rmc_0027.jpg',
-                '/img/rmc_0028.jpg',
-                '/img/rmc_0029.jpg',
-                '/img/rmc_0030.jpg',
-                '/img/rmc_0031.jpg',
-                '/img/rmc_0032.jpg',
-            ],
+            
             bannershd: [ 
                 '/imghd/rmc_0022.jpg',
                  '/imghd/rmc_0030.jpg',
@@ -127,45 +95,7 @@ export default {
                 '/imghd/rmc_0048.jpg',
                  '/imghd/rmc_002.jpg', 
                 
-            ],
-            swiperMouseOptions: {
-                loadPrevNext:true,                      
-                loop: true,
-                freeMode: false,
-                freeModeSticky: true,
-                centeredSlides: true,
-                spaceBetween: 30,
-                grabCursor: true,           
-                mousewheel: true,
-                speed:750,
-                
-                cssMode:false,
-                keyboard: {
-                    enabled: true,
-                    onlyInViewport: false,
-                },
-                navigation: {
-                    nextEl: '.swiper-next',
-                    prevEl: '.swiper-prev',
-                },
-                // pagination: {
-                //     el: '.swiper-pagination',
-                //     type: 'bullets',
-                //     dynamicBullets:true,
-                // }
-            },
-            swiperTouchOptions: {
-                loadPrevNext:true,                      
-                loop: true,
-                freeMode: true,
-                freeModeSticky: true,
-                centeredSlides: true,
-                spaceBetween: 30,
-                grabCursor: true,           
-               
-                cssMode:true,
-                
-            }
+            ]
         }
         
            
@@ -192,6 +122,7 @@ export default {
         //     window.removeEventListener('mousemove',this.mouse);
         // },
         onGridSelected:function(index){
+            console.log('onGrid selected',index)
             this.displaySlide = index;
             // window.scrollTo({ top: 0, behavior: 'smooth' });
             window.scrollTo({top:0});
@@ -353,7 +284,7 @@ body {
 }
 
 
-
+/* 
 
 .swiper-container {
   margin-left: auto;
@@ -362,10 +293,10 @@ body {
   overflow: hidden;
   list-style: none;
   padding: 0;
-  /* Fix of Webkit flickering */
+  
   z-index: 1;
-}
-
+} */
+/*
 .swiper-container-vertical > .swiper-wrapper {
   flex-direction: column;
 }
@@ -441,8 +372,9 @@ body {
     max-width:90%;
     width:auto;
     max-height:80%;
-    /* height:80%; */
 }
+
+*/
 /* 
 .swiper-slide{
     transition:transform .25s ease-out
@@ -458,5 +390,6 @@ body {
 }
 .swiper-slide-prev{
     transform:translateX(-25%)
-} */
+} 
+*/
 </style>

@@ -1,6 +1,6 @@
 <template>
     <div class="grid">
-        <img :src="banner"  key="banner" v-for="(banner,index) in collection" @click="toggle($event,index)" />
+        <img :src="banner"  :key="banner" v-for="(banner,index) in collection" @click="toggle($event,index)" />
     </div>
 </template>
 <script>
@@ -57,7 +57,7 @@ export default {
         /*@click="toggle($event,index)"*/
         toggle:function(ev, index){
             // window.scrollTo({ top: 0, behavior: 'smooth' });
-            console.log(index);
+            console.log('grid clicked: ', index);
             this.onGridSelected(index)
         }
     }
