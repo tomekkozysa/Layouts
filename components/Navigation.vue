@@ -2,7 +2,7 @@
     <div :class="classObject" class="navigation-wrapper">
         <div :class="classObject" class="navigation">
             <p><a class="navigation-link" href="mailto:ron.f.mcelroy@gmail.com">ron.f.mcelroy@gmail.com</a></p>
-            <p><a class="navigation-link" href="te:+44-7813-89-64-43">+44 (0)7813 896443</a></p>
+            <p><a class="navigation-link" href="tel:+44-7813-89-64-43">+44 (0)7813 896443</a></p>
         </div>      
   </div>
 </template>
