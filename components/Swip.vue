@@ -19,9 +19,9 @@
 </template>
 
 <script>
-import Swiper, { Navigation, Pagination } from 'swiper'
+import Swiper, { Navigation, Keyboard, Mousewheel } from 'swiper'
 
-Swiper.use([ Navigation, Pagination ])
+Swiper.use([ Navigation, Keyboard, Mousewheel ])
 
 export default {
     name:'swip',
@@ -33,7 +33,7 @@ export default {
                 loop: true,
                 loopedSlides:45,
                 freeMode: false,
-                freeModeSticky: true,
+                // freeModeSticky: true,
                 centeredSlides: true,
                 spaceBetween: 30,
                 grabCursor: true,           
@@ -75,12 +75,21 @@ export default {
     },
     watch:{
         goto:function(n,o){
+            if(n===o){
+                return;
+            }
             console.log('goto', n,o, this.collection[n], n)
-            this.slides.params.speed = 0;
             console.log('slide from', this.slides.activeIndex)
-            this.slides.slideTo(n);
-            this.slides.params.speed = 666;
+            // this.slides.params.speed = 60;
+            this.$nextTick(()=>{
+            // this.slides.slideTo(n,0);
+            // this.slides.slideReset(0);
+            // this.slides.slideToLoop(n-1,0)
+            this.slides.slideToLoop(n,0)
+            // this.slides.params.speed = 666;
             console.log('slide in', this.slides.activeIndex)
+            })
+            
         }
     },
     mounted() {        
