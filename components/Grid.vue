@@ -73,8 +73,7 @@ export default {
     grid-template-columns: repeat(var(--column-count), var(--cell-w));
     grid-auto-rows:var(--cell-w);
     margin: 0 auto;
-    margin-top:20vh;
-    width: calc( var(--column-count) * var(--cell-w));
+   width: calc( var(--column-count) * var(--cell-w));
 }
 
 

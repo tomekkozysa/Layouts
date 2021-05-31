@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main">
         
         <Navigation :open="is_nav_open" />
         <div class="container" :class="[!hasMouse ? 'has_mouse' : '']">
@@ -165,8 +165,17 @@ export default {
 
 <style>
 
+:root{
+    --header-height:80px;
+    --nav-height:80vh;
+}
 html{
     height:100%;
+}
+._main{
+    width: 100%;
+    height:100vh;
+    overflow: hidden;
 }
 
 body {
@@ -180,216 +189,35 @@ body {
     'Helvetica Neue',
     Arial,
     sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 16px;
-  /* color: #35495e; */
-  /* letter-spacing: 1px; */
-  height:100%;
+    display: block;
+    font-weight: 300;
+    /* color: #35495e; */
 }
 
 .grid_default{
+     padding-top:20vh;
     background: white;
-    /* max-height:0;*/
     overflow: hidden;
     position: absolute;
     top:0;left:0;
     transform: translateY(100vh); 
      width:100%;
     z-index:100;
-    /* max-height:0;/* */
     transition:transform .3s;
-    }
+    /* height:0; */
+    
+}
+
 .is_visible{
-    
-    
    z-index:500;
-    /* max-height:20; */
-    transform: translateY(0vh);
+   /* height:100vh; */
+   transform: translateY(0vh);
+   /* overflow-y:scroll; */
 }
 
 .container{
     position:relative;
-    /* overflow-x: hidden; */
 }
-.container.has_mouse{
+.container.has_mouse{}
 
-}
-.swiper-nav{
-    position:absolute;
-    top:0;
-    left:0;
-    z-index:1000;
-    display: flex;
-    height: 90vh;
-    width:100vw;
-    justify-content: space-between;
-}
-
-.swiper-next,
-.swiper-prev{
-    width:20%;
-    height:70vh;
-    /* background: pink; */
-    cursor: pointer;
-    position:absolute;
-    top:15vh;
-    left:0;
-    z-index:1000;
-    display: flex;
-    align-items: center;
-    padding:40px;
-    pointer-events: none;
-    opacity:0;
-}
-.swiper-next{
-    right:0;
-    left:auto;    
-    justify-content: flex-end;
-}
-.swiper-prev{    
-    justify-content: flex-start;
-}
-
-.swiper-next:focus,
-.swiper-prev:focus{
-    outline:0
-}
-
-.swiper-next svg{
-    transform: translateX(-20px);
-    opacity:0;
-    transition: transform .2s, opacity .1s;    
-}
-.swiper-next:hover svg{
-    transform: translateX(0px);
-    opacity:1;
-}
-
-.swiper-prev svg{
-    transform: translateX(20px);
-    opacity:0;    
-    transition: transform .2s, opacity .1s;    
-}
-.swiper-prev:hover svg{
-    transform: translateX(0px);
-    opacity:1;
-}
-
-
-.swiper-next.has_mouse,
-.swiper-prev.has_mouse{
-    pointer-events:initial;
-    opacity:1;
-}
-
-
-/* 
-
-.swiper-container {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  overflow: hidden;
-  list-style: none;
-  padding: 0;
-  
-  z-index: 1;
-} */
-/*
-.swiper-container-vertical > .swiper-wrapper {
-  flex-direction: column;
-}
-.swiper-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  display: flex;
-  transition-property: transform;
-  box-sizing: content-box;
-}
-.swiper-container-android .swiper-slide,
-.swiper-wrapper {
-  transform: translate3d(0px, 0, 0);
-}
-.swiper-container-multirow > .swiper-wrapper {
-  flex-wrap: wrap;
-}
-.swiper-container-multirow-column > .swiper-wrapper {
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-.swiper-container-free-mode > .swiper-wrapper {
-  transition-timing-function: ease-out;
-  margin: 0 auto;
-}
-.swiper-slide {
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition-property: transform;
-}
-.swiper-slide-invisible-blank {
-  visibility: hidden;
-}
-
-
-
-
-
-.swiper-wrapper {
-    transition-timing-function:ease-out;
-    transition-duration: 1000ms;
-    will-change: transform;
-    
-}
-.swiper{
-    margin-top:5vh;
-    user-select: none;
-}
-
-
-.swiper-slide{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    box-sizing: border-box;
-    height:90vh;
-    
-    -webkit-transform: translate3d(0, 0, 0);
-
-    
-
-
-}
-
-
-.swiper-slide img{
-    display: block;
-    max-width:90%;
-    width:auto;
-    max-height:80%;
-}
-
-*/
-/* 
-.swiper-slide{
-    transition:transform .25s ease-out
-}
-
-.swiper-slide-duplicate-active,
-.swiper-slide-active{
-    transform:translateX(0)
-}
-
-.swiper-slide-next{
-    transform:translateX(25%)
-}
-.swiper-slide-prev{
-    transform:translateX(-25%)
-} 
-*/
 </style>

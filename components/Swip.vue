@@ -6,8 +6,7 @@
           <div class="swiper-slide" :key="image" v-for="image in collection">
                <img :src="image">
           </div>
-          ...
-      </div>
+        </div>
 
         <div :class="[hasMouse ? 'has_mouse' : '', 'swiper-prev']">
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M2.117 12l7.527 6.235-.644.765-9-7.521 9-7.479.645.764-7.529 6.236h21.884v1h-21.883z"/></svg>
@@ -16,24 +15,11 @@
             <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
         </div>
 
-
-
-      <!-- If we need pagination 
-      <div class="swiper-pagination"></div>-->
-
-      <!-- If we need navigation buttons 
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>-->
-
-      <!-- If we need scrollbar 
-      <div class="swiper-scrollbar"></div> -->
-
   </div>
 </template>
 
 <script>
 import Swiper, { Navigation, Pagination } from 'swiper'
-// import 'swiper/swiper-bundle.css'
 
 Swiper.use([ Navigation, Pagination ])
 
@@ -44,7 +30,7 @@ export default {
             slides:null,
             swiperMouseOptions: {
                 loadPrevNext:true,                      
-                loop: false,
+                loop: true,
                 loopedSlides:45,
                 freeMode: false,
                 freeModeSticky: true,
@@ -96,34 +82,79 @@ export default {
             this.slides.params.speed = 666;
         }
     },
-  mounted() {
-
-        
+    mounted() {        
         if (matchMedia('(hover:hover)').matches) {
             this.hasMouse = true;
         }
         else{
             this.hasMouse = false;
-        }
-        
+        }        
         this.mouseTested = true;
-
         let options = this.hasMouse ? this.swiperMouseOptions : this.swiperTouchOptions;
-
-
-    let s = new Swiper('.swiper-container', options )
-
-    this.slides = s;
-    // this.slides.slideTo(this.goto);
-  }
+        let s = new Swiper('.swiper-container', options )
+        this.slides = s;
+    }
 }
 </script>
 
 <style scoped>
+
+
+.swiper-container {
+    /* desktop */
+    --swip-height:calc(100vh - calc(2 * var(--header-height)))
+}
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    /* Fix of Webkit flickering */
+    z-index: 1;
+    height:var(--swip-height);
+}
+
+
+.swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    transition-property: transform;
+    box-sizing: content-box;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition-property: transform;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height:100%;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+
+.swiper-slide img{
+    display: block;
+    max-width:90%;
+    width:auto;
+    max-height:100%;
+    /* height:80%; */
+}
+
+
 .swiper-next,
 .swiper-prev{
     width:20%;
-    height:90vh;
+    height:var( --nav-height);
     /* background: pink; */
     cursor: pointer;
     position:absolute;
@@ -139,11 +170,11 @@ export default {
     right:0;
     left:auto;    
     justify-content: flex-end;
-    /* padding-right:40px; */
+    padding-right:20px;
 }
 .swiper-prev{    
-    /* padding-left:40px; */
     justify-content: flex-start;
+    padding-left:20px;
 }
 
 .swiper-next:focus,
@@ -161,6 +192,8 @@ export default {
     opacity:1;
 }
 
+
+
 .swiper-prev svg{
     transform: translateX(20px);
     opacity:0;    
@@ -172,6 +205,7 @@ export default {
 }
 
 
+
 .swiper-next.has_mouse,
 .swiper-prev.has_mouse{
     pointer-events:initial;
@@ -180,141 +214,6 @@ export default {
 
 
 
-
-.swiper-container {
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  overflow: hidden;
-  list-style: none;
-  padding: 0;
-  /* Fix of Webkit flickering */
-  z-index: 1;
-  height:calc(100vh - 160px);
-}
-/* 
-.swiper-container-vertical > .swiper-wrapper {
-  flex-direction: column;
-} */
-.swiper-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  display: flex;
-  transition-property: transform;
-  box-sizing: content-box;
-}
-/* .swiper-container-android .swiper-slide,
-.swiper-wrapper {
-  transform: translate3d(0px, 0, 0);
-}
-.swiper-container-multirow > .swiper-wrapper {
-  flex-wrap: wrap;
-}
-.swiper-container-multirow-column > .swiper-wrapper {
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-.swiper-container-free-mode > .swiper-wrapper {
-  transition-timing-function: ease-out;
-  margin: 0 auto;
-} */
-
-
-.swiper-slide {
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition-property: transform;
-}
-/* .swiper-slide-invisible-blank {
-  visibility: hidden;
-} */
-
-
-.swiper-slide{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    box-sizing: border-box;
-    height:100%;
-    
-    -webkit-transform: translate3d(0, 0, 0);
-
-    
-
-
-}
-
-
-
-/* .swiper-wrapper {
-    transition-timing-function:ease-out;
-    transition-duration: 1000ms;
-    will-change: transform;
-    
-} */
-
-/* 
-.swiper{
-    margin-top:5vh;
-    user-select: none;
-} */
-
-
-
-
-.swiper-slide img{
-    display: block;
-    max-width:90%;
-    width:auto;
-    max-height:100%;
-    /* height:80%; */
-}
-
-
-/*
-.swiper-container-vertical > .swiper-wrapper {
-  flex-direction: column;
-}
-.swiper-wrapper {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  display: flex;
-  transition-property: transform;
-  box-sizing: content-box;
-}
-.swiper-container-android .swiper-slide,
-.swiper-wrapper {
-  transform: translate3d(0px, 0, 0);
-}
-.swiper-container-multirow > .swiper-wrapper {
-  flex-wrap: wrap;
-}
-.swiper-container-multirow-column > .swiper-wrapper {
-  flex-wrap: wrap;
-  flex-direction: column;
-}
-.swiper-container-free-mode > .swiper-wrapper {
-  transition-timing-function: ease-out;
-  margin: 0 auto;
-}
-.swiper-slide {
-  flex-shrink: 0;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transition-property: transform;
-}
-.swiper-slide-invisible-blank {
-  visibility: hidden;
-}
- */
 
 
 </style>

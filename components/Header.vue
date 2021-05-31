@@ -38,12 +38,13 @@ export default {
 <style scoped>
 .header{
     padding:0 24px;
-    height:80px;
+    height:var(--header-height, 80px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: relative;
     z-index:5000;
+    background:white;
 }
 .logo{
     width:200px;
