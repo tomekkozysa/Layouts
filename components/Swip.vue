@@ -75,11 +75,12 @@ export default {
     },
     watch:{
         goto:function(n,o){
-            console.log(n,o, this.collection[n])
+            console.log('goto', n,o, this.collection[n], n)
             this.slides.params.speed = 0;
-
+            console.log('slide from', this.slides.activeIndex)
             this.slides.slideTo(n);
             this.slides.params.speed = 666;
+            console.log('slide in', this.slides.activeIndex)
         }
     },
     mounted() {        

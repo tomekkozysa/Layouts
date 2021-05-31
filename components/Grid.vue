@@ -58,7 +58,7 @@ export default {
         toggle:function(ev, index){
             // window.scrollTo({ top: 0, behavior: 'smooth' });
             console.log('grid clicked: ', index);
-            this.onGridSelected(index)
+            this.onGridSelected(index);
         }
     }
 }

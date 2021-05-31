@@ -191,7 +191,10 @@ body {
     sans-serif;
     display: block;
     font-weight: 300;
+    font-size: 16px;
     /* color: #35495e; */
+    /* letter-spacing: 1px; */
+    height:100%;
 }
 
 .grid_default{
