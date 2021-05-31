@@ -29,12 +29,13 @@ export default {
         return{
             slides:null,
             swiperMouseOptions: {
-                loadPrevNext:true,                      
+                // loadPrevNext:false,                      
                 loop: true,
                 loopedSlides:45,
                 freeMode: false,
+                slidesPerView:1,
                 // freeModeSticky: true,
-                centeredSlides: true,
+                // centeredSlides: true,
                 spaceBetween: 30,
                 grabCursor: true,           
                 mousewheel: true,
@@ -51,10 +52,11 @@ export default {
                 
             },
             swiperTouchOptions: {
-                loadPrevNext:true,                      
+                // loadPrevNext:true,                      
                 loop: true,
                 loopedSlides:45,
                 freeMode: true,
+                slidesPerView:1,
                 freeModeSticky: true,
                 centeredSlides: true,
                 spaceBetween: 30,
@@ -72,10 +74,13 @@ export default {
     props:{
         collection:Array,
         goto:Number,
+        onSwiperUpdate:Function,
     },
     watch:{
         goto:function(n,o){
-            if(n===o){
+            console.log('goto watcher:',n)
+            if(n===o || n === this.slides.activeIndex){
+                console.log('n===o',n===o)
                 return;
             }
             console.log('goto', n,o, this.collection[n], n)
@@ -83,9 +88,9 @@ export default {
             // this.slides.params.speed = 60;
             this.$nextTick(()=>{
             // this.slides.slideTo(n,0);
-            // this.slides.slideReset(0);
             // this.slides.slideToLoop(n-1,0)
             this.slides.slideToLoop(n,0)
+            this.slides.slideReset(0);
             // this.slides.params.speed = 666;
             console.log('slide in', this.slides.activeIndex)
             })
@@ -103,6 +108,11 @@ export default {
         let options = this.hasMouse ? this.swiperMouseOptions : this.swiperTouchOptions;
         let s = new Swiper('.swiper-container', options )
         this.slides = s;
+
+        this.slides.on('slideChange',  (e) => {
+                console.log('slide changed',e, e.activeIndex);
+                this.onSwiperUpdate(e.activeIndex);
+            });
     }
 }
 </script>

@@ -57,7 +57,7 @@ export default {
         /*@click="toggle($event,index)"*/
         toggle:function(ev, index){
             // window.scrollTo({ top: 0, behavior: 'smooth' });
-            console.log('grid clicked: ', index);
+            console.log('grid image clicked: ', index);
             this.onGridSelected(index);
         }
     }

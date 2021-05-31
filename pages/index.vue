@@ -6,7 +6,7 @@
             <Header :onGridToggle="onGridToggle" :onNavToggle="onNavToggle" />
             <div>
                 
-                <Swip :collection="bannershd" :goto="displaySlide" />
+                <Swip :collection="bannershd" :goto="displaySlide" :onSwiperUpdate="onSwiperUpdate" />
                 
             </div>
             <section :class="gridCSS">
@@ -121,12 +121,29 @@ export default {
         //     this.hasMouse = true;
         //     window.removeEventListener('mousemove',this.mouse);
         // },
+        onSwiperUpdate:function(e){
+            console.log('onSwiperUpdate',e)
+            this.displaySlide = e; 
+        },
         onGridSelected:function(index){
             console.log('onGrid selected',index)
-            this.displaySlide = index;
+           
             // window.scrollTo({ top: 0, behavior: 'smooth' });
+            this.displaySlide = index; 
+            // this.$nextTick(()=>{
+
+            //     // this.displaySlide = index;   
+            //     console.log('onGrid selected: next tick')
+            // })
+
+            // setTimeout(()=>{
+            //     console.log('onGrid selected: next tick')
+            //     console.log('onGrid selected: update displaySlide')
+            //         this.displaySlide = index; 
+            // },1000);
+            
             window.scrollTo({top:0});
-            this.showGrid=false;     
+            this.showGrid=false; 
         },
         onGridToggle:function(){
             this.showGrid = !this.showGrid;
