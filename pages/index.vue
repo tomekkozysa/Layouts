@@ -77,6 +77,9 @@ export default {
                
                 '/imghd/rmc_0031.jpg',
                 '/imghd/rmc_0032.jpg',
+
+                '/imghd/rmc_0047.jpg',
+                '/imghd/rmc_0048.jpg',                
                 '/imghd/rmc_0033.jpg',
                 '/imghd/rmc_0034.jpg',
                 '/imghd/rmc_0035.jpg',
@@ -91,8 +94,7 @@ export default {
                 '/imghd/rmc_0044.jpg',
                 '/imghd/rmc_0045.jpg',
                 '/imghd/rmc_0046.jpg',
-                '/imghd/rmc_0047.jpg',
-                '/imghd/rmc_0048.jpg',
+                
                  '/imghd/rmc_002.jpg', 
                 
             ]
